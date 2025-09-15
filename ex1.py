@@ -1,10 +1,15 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
-app = Flask(__name__)
+# tell Flask: templates are in current folder (.)
+app = Flask(__name__, template_folder=".")
 
 # In-memory store
 todos = []
 next_id = 1
+
+@app.route('/')
+def home():
+    return render_template("ex1.html", result="Welcome to the To-Do App 🚀")
 
 @app.route('/todos', methods=['GET'])
 def get_todos():
